@@ -1,0 +1,12 @@
+body {
+    font-family: 'Tajawal', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.hero-img {
+    max-width: 100%;
+    border-radius: 8px;
+}
