@@ -1,4 +1,4 @@
-FROM richarvey/nginx-php-fpm:8.2
+FROM richarvey/nginx-php-fpm:8.1
 
 WORKDIR /var/www/html
 
