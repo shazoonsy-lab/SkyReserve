@@ -27,8 +27,10 @@ COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Generate key
+# Copy example env and generate key
+RUN cp .env.example .env
 RUN php artisan key:generate
+
 
 # Permissions for storage and bootstrap/cache
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
