@@ -50,7 +50,7 @@
 
 
     {{-- الإدخال --}}
-    <form method="POST" action="{{ route('admin.ai.ask') }}" class="mt-4 flex gap-2">
+    <form id="ai-form" method="POST" action="{{ route('admin.ai.ask') }}" class="mt-4 flex gap-2">
     @csrf
 
     <textarea id="question" name="question" rows="2"
@@ -73,20 +73,13 @@ function fill(text) {
 
 const form = document.getElementById('ai-form');
 const questionInput = document.getElementById('question');
-const typing = document.getElementById('typing');
 
 questionInput.addEventListener('keydown', function(e){
     if(e.key === 'Enter' && !e.shiftKey){
         e.preventDefault();
-        form.requestSubmit();
+        form.submit(); // إرسال حقيقي
     }
 });
-
-form.addEventListener('submit', function(e){
-    e.preventDefault();
-    typing.classList.remove('hidden');
-
-    
-});
 </script>
+
 @endsection

@@ -158,11 +158,17 @@ Route::middleware(['auth', 'admin'])
 
 
 // عرض واجهة المساعد الذكي
-Route::get('/admin/ai-assistant', [AiAssistantController::class, 'showPage'])
+Route::get('/ai-assistant', [AiAssistantController::class, 'showPage'])
     ->name('admin.ai.page');
 
-Route::post('/admin/ai-assistant/ask', [AiAssistantController::class, 'ask'])
+Route::post('/ai-assistant', [AiAssistantController::class, 'ask'])
     ->name('admin.ai.ask');
+
+ 
+
+
+
+
 
 
 

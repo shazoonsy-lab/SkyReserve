@@ -20,6 +20,15 @@
 </a>
 
             <a href="#contact" class="btn btn-outline-light btn-lg">📞 تواصل معنا</a>
+
+             <!-- تسجيل دخول الإدارة -->
+    <a href="{{ route('login') }}"
+       class="btn btn-warning btn-lg text-dark">
+        🔐 تسجيل الدخول
+    </a>
+
+
+
         </div>
     </div>
 </section>
