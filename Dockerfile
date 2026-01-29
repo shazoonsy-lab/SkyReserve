@@ -1,6 +1,13 @@
 # Use official PHP 8.3 Apache image
 FROM php:8.3-apache
 
+# Set Apache DocumentRoot to Laravel public folder
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
+    /etc/apache2/sites-available/*.conf \
+    /etc/apache2/apache2.conf
+
 # Set working directory
 WORKDIR /var/www/html
 
@@ -27,15 +34,13 @@ COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Copy example env and generate key
-RUN cp .env.example .env
-RUN php artisan key:generate
+# Copy env and generate key
+RUN cp .env.example .env && php artisan key:generate
 
+# Permissions for Laravel
+RUN chown -R www-data:www-data storage bootstrap/cache
 
-# Permissions for storage and bootstrap/cache
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-
-# Expose port 10000 (Render uses $PORT)
+# Expose port (Render ignores this but ok to keep)
 EXPOSE 10000
 
 # Start Apache
